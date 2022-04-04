@@ -32,7 +32,7 @@ public class AppService {
 	public Long generateAppNo(){
 
 		manager.createQuery("Select t from TableLock t Where t.tableName=:tableName", TableLock.class)
-				.setParameter("tableName", "Application").setLockMode(LockModeType.OPTIMISTIC)
+				.setParameter("tableName", "Application").setLockMode(LockModeType.PESSIMISTIC_WRITE)
 				.getResultList().stream().findFirst().orElse(null);
 
 		Long newAppNo;
